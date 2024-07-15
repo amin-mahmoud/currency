@@ -10,6 +10,7 @@ use GeoSot\EnvEditor\Controllers\EnvController ;
 use   App\Http\Controllers\EnvController as EnvEditorController;
 use   App\Http\Controllers\HistoryController;
 use GeoSot\EnvEditor\EnvEditor;
+use App\Models\History;
 
 
 Route::get('/', function () {
@@ -29,7 +30,7 @@ Route::get('/dashboard', function ( EnvEditor $editor) {
             return stripos(data_get($item,'key'), 'rate') !== false;
         }) ;
 
-        $histories = auth()->user()?->histories;
+        $histories = History::where('user_id', auth()->id())->orderBy('id', 'desc' )->get();
 
     return Inertia::render('Dashboard', ['exchange_rates'=> $exchangeRates, 'histories'=> $histories]);
 })->middleware(['auth', 'verified'])->name('dashboard');
