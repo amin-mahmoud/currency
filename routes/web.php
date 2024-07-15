@@ -8,6 +8,8 @@ use Inertia\Inertia;
 use GeoSot\EnvEditor\Controllers\EnvController ;
 
 use   App\Http\Controllers\EnvController as EnvEditorController;
+use   App\Http\Controllers\HistoryController;
+use GeoSot\EnvEditor\EnvEditor;
 
 
 Route::get('/', function () {
@@ -19,29 +21,34 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function ( EnvEditor $editor) {
 
-    return Inertia::render('Dashboard');
+    $envValues = $editor->getEnvFileContent($fileName='../../.env');
+
+       $exchangeRates  = $envValues->filter(function ($item) {
+            return stripos(data_get($item,'key'), 'rate') !== false;
+        }) ;
+
+        $histories = auth()->user()?->histories;
+
+    return Inertia::render('Dashboard', ['exchange_rates'=> $exchangeRates, 'histories'=> $histories]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/env-editor', [EnvController::class, 'index'])->name('env-editor.index');
+
+    Route::post('/store-amount', [HistoryController::class, 'store'])->name('stor-amount');
 
 
     Route::get('/env-editor-index', [EnvEditorController::class, 'index'])->name('env-editor.index');
-
     Route::get('/env-editor-create', [EnvEditorController::class, 'create'])->name('env-editor.create');
-
     Route::post('/env-editor-store', [EnvEditorController::class, 'store'])->name('env-editor.store');
 
 
-
     Route::get('/env-editor-edit/{key}', [EnvEditorController::class, 'edit'])->name('env-editor.edit');
-
     Route::post('/env-editor-update', [EnvEditorController::class, 'update'])->name('env-editor.update');
     Route::post('/env-editor-update/{key}', [EnvEditorController::class, 'destroy'])->name('env-editor.destroy');
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

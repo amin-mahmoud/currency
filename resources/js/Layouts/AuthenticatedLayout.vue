@@ -35,7 +35,8 @@ const showingNavigationDropdown = ref(false);
 
 
                                 <NavLink  :href="route('env-editor.index')"
-                                 :active="route().current('env-editor.index') || route().current('env-editor.edit')">
+                                 :active="route().current('env-editor.index')
+                                  || route().current('env-editor.edit') || route().current('env-editor.create')">
                                     Exchange Rates
                                 </NavLink>
                             </div>

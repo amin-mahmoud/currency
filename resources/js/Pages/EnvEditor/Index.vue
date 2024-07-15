@@ -4,7 +4,7 @@
     <Head title="Exchange Rates" />
 
     <AuthenticatedLayout>
- 
+
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -41,8 +41,12 @@
                             <Link :href="route('env-editor.edit', envKey.key)" class="text-gray-500 font-medium hover:text-gray-900 hover:bg-gray-50   px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
                             Edit
                         </Link>
-                         <Link :href="route('env-editor.destroy', envKey.key)" :method="'POST'" class="text-red-500 font-medium hover:text-red-900 hover:bg-red-50   px-4 py-2 text-sm"
-                          role="menuitem" tabindex="-1" id="menu-item-0">
+
+
+                        <Link v-if=" envKey.key.includes('_RATE') == true " :href="route('env-editor.destroy', envKey.key)"
+                         :method="'POST'"
+                         class="text-red-500 font-medium hover:text-red-900 hover:bg-red-50   px-4 py-2 text-sm"
+                         role="menuitem" tabindex="-1" id="menu-item-0">
 
                             Delete
                         </Link>

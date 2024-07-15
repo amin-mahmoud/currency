@@ -16,34 +16,34 @@
                     <!-- component -->
                     <div class="max-w-2xl mx-auto p-4">
                         <div class="inline-block min-w-full py-2 align-middle">
-                            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <div class="overflow-hidden      ring-opacity-5 md:rounded-lg">
                                 <div class="w-full ">
-                    <form  @submit.prevent="submit" class="bg-white shadow-md rounded   p-3 mb-4">
+                                <form  @submit.prevent="submit" class="bg-white shadow-md rounded   p-3 mb-4">
 
-                        <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="key">
-                            Key
-                        </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="key" type="text" v-model="form.key" >
+                                    <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="key">
+                                        Key
+                                    </label>
+                                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="key" type="text" v-model="form.key" >
 
-                        </div>
-                        <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="value">
-                         Enter new Value
-                        </label>
-                        <input  v-model="form.value"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3
-                         leading-tight focus:outline-none focus:shadow-outline" id="value" type="text" >
+                                    </div>
+                                    <div class="mb-6">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="value">
+                                    Enter new Value
+                                    </label>
+                                    <input  v-model="form.value"  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3
+                                    leading-tight focus:outline-none focus:shadow-outline" id="value" type="text" >
 
-                        </div>
-                        <div class="flex items-center justify-between">
-                        <button @click="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                    <button @click="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
 
-                            {{ props.envKey ? 'update': 'Add' }}
-                        </button>
+                                        {{ props.envKey ? 'update': 'Add' }}
+                                    </button>
 
-                        </div>
-                    </form>
+                                    </div>
+                                </form>
 
                     </div>
 
